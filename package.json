@@ -1,0 +1,95 @@
+{
+  "name": "lazy-intersection-observer",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "description": "Lazy load react components when they scroll into view using intersection observer",
+  "homepage": "https://github.com/nagaraj-real/lazy-intersection-observer.git#readme",
+  "keywords": [
+    "react",
+    "lazy load",
+    "scroll",
+    "intersection observer",
+    "image load",
+    "next js"
+  ],
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --p ./tsconfig-build.json && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
+    "release": "release-it"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^7.0.2",
+    "@types/node": "^20.8.7",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.16",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "glob": "^10.3.10",
+    "husky": "^8.0.0",
+    "pinst": "^3.0.0",
+    "postcss": "^8.4.31",
+    "react": "next",
+    "react-dom": "next",
+    "release-it": "^16.2.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.6.0",
+    "vite-plugin-lib-inject-css": "^1.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release-it": {
+    "git": {
+      "tagAnnotation": "Release v${version}",
+      "tagName": "v${version}",
+      "changelog": "yarn dlx auto-changelog --stdout --commit-limit false --unreleased --template https://raw.githubusercontent.com/release-it/release-it/main/templates/changelog-compact.hbs"
+    },
+    "publishConfig": {
+      "registry": "https://registry.npmjs.org",
+      "access": "public"
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    },
+    "hooks": {
+      "before:init": [
+        "yarn lint"
+      ],
+      "after:bump": "yarn dlx auto-changelog -p",
+      "after:git:release": "echo After git push, before github release",
+      "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
+    }
+  },
+  "packageManager": "yarn@4.0.1"
+}
