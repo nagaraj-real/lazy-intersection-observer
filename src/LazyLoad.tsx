@@ -1,7 +1,3 @@
-import { useState } from "react";
-
 export default function LazyLoad() {
-  const [data] = useState({ id: "test" });
-
-  return <>{data ? <h2>{data.id}</h2> : <h2>test</h2>}</>;
+  return <h2>Lazy Loaded Component 1</h2>;
 }

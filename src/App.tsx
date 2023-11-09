@@ -1,20 +1,31 @@
 import "./App.css";
-import React, { useRef } from "react";
+import React, { RefObject } from "react";
 import { TallPage } from "./TallPage.tsx";
-import { LazyIntersectionObserver } from "../lib/main.ts";
+import { DeferrableView } from "../lib/main.ts";
 
 const LazyLoad = React.lazy(() => import("./LazyLoad.tsx"));
+const LazyLoad2 = React.lazy(() => import("./LazyLoad2.tsx"));
 
 function App() {
-  const elementRef = useRef<HTMLDivElement>(null);
   return (
     <>
-      <TallPage />
-      <div ref={elementRef}>
-        <LazyIntersectionObserver elementRef={elementRef}>
+      <TallPage color="#b17272" />
+      <section>
+        <DeferrableView>
           <LazyLoad />
-        </LazyIntersectionObserver>
-      </div>
+        </DeferrableView>
+      </section>
+
+      <TallPage color="#7cbbbb" />
+      <section>
+        <DeferrableView
+          renderPlaceholder={({ htmlRef }) => (
+            <h3 ref={htmlRef as RefObject<HTMLHeadingElement>}></h3>
+          )}
+        >
+          <LazyLoad2 />
+        </DeferrableView>
+      </section>
     </>
   );
 }

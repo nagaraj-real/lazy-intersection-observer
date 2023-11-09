@@ -1,8 +1,8 @@
-import { useLayoutEffect, useState } from "react";
+import { RefObject, useLayoutEffect, useState } from "react";
 
-export function useIntersection(
+export function useIntersectionObserver(
   handleIntersect: IntersectionObserverCallback,
-  getAnchorElem: () => HTMLElement | null,
+  htmlRef: RefObject<HTMLElement>,
   options?: IntersectionObserverInit
 ) {
   const [observer] = useState(
@@ -10,10 +10,10 @@ export function useIntersection(
   );
 
   useLayoutEffect(() => {
-    const anchorElem = getAnchorElem();
-    if (anchorElem) observer.observe(anchorElem);
+    const elem = htmlRef.current;
+    if (elem) observer.observe(elem);
     return () => observer?.disconnect();
-  }, [observer, getAnchorElem]);
+  }, [observer, htmlRef]);
 
   return observer;
 }

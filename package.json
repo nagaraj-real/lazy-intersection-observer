@@ -1,5 +1,5 @@
 {
-  "name": "lazy-intersection-observer",
+  "name": "react-deferrable-view",
   "version": "0.0.2",
   "type": "module",
   "main": "dist/main.js",
@@ -8,10 +8,11 @@
   "homepage": "https://github.com/nagaraj-real/lazy-intersection-observer.git#readme",
   "keywords": [
     "react",
+    "defer load",
+    "performance",
     "lazy load",
-    "scroll",
+    "on viewport scroll",
     "intersection observer",
-    "image load",
     "next js"
   ],
   "license": "ISC",
@@ -21,9 +22,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
+    "build-web": "vite build --config vite.react.config.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn build",
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
