@@ -44,7 +44,7 @@ function App() {
 
 All props are optional.
 
-<p> options - Override  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank">intersection observer options</a> </p>
+<p> options - override  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank">intersection observer options</a> </p>
 <p> renderPlaceholder - callback function to provide placeholder element. Defaults to empty div element.
 
 <hr/>
