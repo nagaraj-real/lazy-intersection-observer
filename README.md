@@ -20,7 +20,7 @@ Wrap your lazy loaded react components in DeferrableView component.
 
 
 ```
- const LazyLoad = React.lazy(() => import("./LazyLoad.tsx"));
+const LazyLoad = React.lazy(() => import("./LazyLoad.tsx"));
 
 function App() {
  return <DeferrableView>
@@ -36,7 +36,7 @@ function App() {
     renderPlaceholder={({ htmlRef }) => (
             <h3 ref={htmlRef as RefObject<HTMLHeadingElement>}>Fallback component</h3>
           )}>
-    <LazyLoad2 />
+    <LazyLoad />
 </DeferrableView>
 ```
 
@@ -44,8 +44,8 @@ function App() {
 
 All props are optional.
 
-<p> options - Override intersection observer <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank">options</a> </p>
-<p> renderPlaceholder - callback function to provide fallback element
+<p> options - Override  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank">intersection observer options</a> </p>
+<p> renderPlaceholder - callback function to provide placeholder element. Defaults to empty div element.
 
 <hr/>
 
